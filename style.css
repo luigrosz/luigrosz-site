@@ -1,0 +1,16 @@
+:root {
+  background-color: rgb(177, 168, 290);
+  color: forestgreen;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+#root-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+}
