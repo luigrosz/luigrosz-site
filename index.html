@@ -1,15 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>GENIUSMODE</title>
-  </head>
-  <body>
-    <div id="root-div">
-      <h1>GENIUSMODE ACTIVATED</h1>
-      <h2>Lui Grosz</h2>
-    </div>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <link rel="stylesheet" href="style.css" /> -->
+  <title>GENIUSMODE</title>
+</head>
+
+<body>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+    :root {
+      background-color: rgb(177, 168, 290);
+      color: forestgreen;
+      font-family: "Open Sans", sans-serif;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    #root-div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      flex-direction: column;
+    }
+  </style>
+  <div id="root-div">
+    <h1 id="mode">GENIUSMODE ACTIVATED</h1>
+    <h2 id="name">Lui Grosz</h2>
+    <br>
+    <button onclick="changeMode()">CHANGE MODE</button>
+  </div>
+</body>
+<script>
+  let mode = document.getElementById('mode');
+  let name = document.getElementById('name');
+  function changeMode() {
+    if (mode.innerHTML == 'GENIUSMODE ACTIVATED') {
+      mode.innerHTML = 'GENIUSMODE DEACTIVATED';
+      name.innerHTML = 'Celso Filho';
+    } else {
+      mode.innerHTML = 'GENIUSMODE ACTIVATED';
+      name.innerHTML = 'Lui Grosz';
+    }
+  }
+</script>
+
 </html>
