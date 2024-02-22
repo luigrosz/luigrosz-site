@@ -30,24 +30,39 @@
     }
   </style>
   <div id="root-div">
-    <h1 id="mode">GENIUSMODE ACTIVATED</h1>
-    <h2 id="name">Lui Grosz</h2>
+    <h1 id="mode"></h1>
+    <h2 id="name"></h2>
     <br>
     <button onclick="changeMode()">CHANGE MODE</button>
   </div>
 </body>
 <script>
-  let mode = document.getElementById('mode');
+  let modeDiv = document.getElementById('mode');
   let name = document.getElementById('name');
-  function changeMode() {
-    if (mode.innerHTML == 'GENIUSMODE ACTIVATED') {
-      mode.innerHTML = 'GENIUSMODE DEACTIVATED';
+  var modeLocalStorage = localStorage.getItem('mode');
+  console.log(modeLocalStorage);
+  window.onload = (event) => {
+    if(modeLocalStorage === 'cf'){
+      modeDiv.innerHTML = 'GENIUSMODE DEACTIVATED';
       name.innerHTML = 'Celso Filho';
     } else {
-      mode.innerHTML = 'GENIUSMODE ACTIVATED';
+      modeDiv.innerHTML = 'GENIUSMODE ACTIVATED';
       name.innerHTML = 'Lui Grosz';
     }
+  };
+  function changeMode() {
+    if (modeDiv.innerHTML == 'GENIUSMODE ACTIVATED') {
+      modeDiv.innerHTML = 'GENIUSMODE DEACTIVATED';
+      name.innerHTML = 'Celso Filho';
+      localStorage.setItem('mode', 'cf');
+    } else {
+      modeDiv.innerHTML = 'GENIUSMODE ACTIVATED';
+      name.innerHTML = 'Lui Grosz';
+      localStorage.setItem('mode', 'lgrz');
+    }
   }
+
+
 </script>
 
 </html>
