@@ -34,6 +34,7 @@
     <h2 id="name"></h2>
     <br>
     <button onclick="changeMode()">CHANGE MODE</button>
+    <img src="taylor.webp" />
   </div>
 </body>
 <script>
@@ -42,7 +43,7 @@
   var modeLocalStorage = localStorage.getItem('mode');
   console.log(modeLocalStorage);
   window.onload = (event) => {
-    if(modeLocalStorage === 'cf'){
+    if (modeLocalStorage === 'cf') {
       modeDiv.innerHTML = 'GENIUSMODE DEACTIVATED';
       name.innerHTML = 'Celso Filho';
     } else {
