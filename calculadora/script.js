@@ -1,7 +1,5 @@
 let result = document.getElementById("result");
 let query = document.getElementById("query");
-result.innerHTML = 1000;
-query.innerHTML = 10;
 
 let AC = document.getElementById("ac");
 AC.addEventListener('click', () => {
