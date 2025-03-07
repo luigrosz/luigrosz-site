@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <link rel="stylesheet" href="style.css" /> -->
+  <title>CALCULADORA</title>
+</head>
+
+<body>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+    :root {
+      background-color: #48D1CC;
+      color: #4682B4;
+      font-family: "Open Sans", sans-serif;
+      margin: 0px;
+      padding: 0px;
+    }
+  </style>
+  <div id="root-div">
+    CALCULADORA
+  </div>
+</body>
+<script>
+  let modeDiv = document.getElementById('mode');
+  let name = document.getElementById('name');
+  var modeLocalStorage = localStorage.getItem('mode');
+  console.log(modeLocalStorage);
+  window.onload = (event) => {
+    if (modeLocalStorage === 'cf') {
+      modeDiv.innerHTML = 'GENIUSMODE DEACTIVATED';
+      name.innerHTML = 'Celso Filho';
+    } else {
+      modeDiv.innerHTML = 'GENIUSMODE ACTIVATED';
+      name.innerHTML = 'Lui Grosz';
+    }
+  };
+  function changeMode() {
+    if (modeDiv.innerHTML == 'GENIUSMODE ACTIVATED') {
+      modeDiv.innerHTML = 'GENIUSMODE DEACTIVATED';
+      name.innerHTML = 'fonte, logo minimalista, bordas redondas, modelos magros segurando alguma coisa, direitos autorais, opcao de idioma';
+      localStorage.setItem('mode', 'cf');
+    } else {
+      modeDiv.innerHTML = 'GENIUSMODE ACTIVATED';
+      name.innerHTML = 'Lui Grosz';
+      localStorage.setItem('mode', 'lgrz');
+    }
+  }
+
+
+</script>
+
+</html>
