@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- <link rel="stylesheet" href="style.css" /> -->
   <title>GENIUSMODE</title>
 </head>
 
@@ -28,6 +27,27 @@
       flex-direction: column;
     }
 
+    .nav-links {
+      margin-top: 20px;
+    }
+
+    .nav-links a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #ffffff22;
+      color: #4682B4;
+      text-decoration: none;
+      border: 1px solid #4682B4;
+      border-radius: 10px;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: #4682B4;
+      color: white;
+    }
+
     @media only screen and (max-width: 500px) {
       #mode {
         font-size: 19px !important;
@@ -38,40 +58,31 @@
       }
     }
   </style>
+
   <div id="root-div">
     <h1 id="mode"></h1>
     <h2 id="name"></h2>
-    <br>
-    <!-- <button onclick="changeMode()">CHANGE MODE</button>-->
+
+    <div class="nav-links">
+      <a href="/tesseract/">OCR</a>
+      <a href="/calculadora/">Calculadora</a>
+    </div>
   </div>
+
+  <script>
+    let modeDiv = document.getElementById('mode');
+    let name = document.getElementById('name');
+    var modeLocalStorage = localStorage.getItem('mode');
+    window.onload = () => {
+      if (modeLocalStorage === 'cf') {
+        modeDiv.innerHTML = 'GENIUSMODE DEACTIVATED';
+        name.innerHTML = 'Celso Filho';
+      } else {
+        modeDiv.innerHTML = 'GENIUSMODE ACTIVATED';
+        name.innerHTML = 'Lui Grosz';
+      }
+    };
+  </script>
 </body>
-<script>
-  let modeDiv = document.getElementById('mode');
-  let name = document.getElementById('name');
-  var modeLocalStorage = localStorage.getItem('mode');
-  console.log(modeLocalStorage);
-  window.onload = (event) => {
-    if (modeLocalStorage === 'cf') {
-      modeDiv.innerHTML = 'GENIUSMODE DEACTIVATED';
-      name.innerHTML = 'Celso Filho';
-    } else {
-      modeDiv.innerHTML = 'GENIUSMODE ACTIVATED';
-      name.innerHTML = 'Lui Grosz';
-    }
-  };
-  function changeMode() {
-    if (modeDiv.innerHTML == 'GENIUSMODE ACTIVATED') {
-      modeDiv.innerHTML = 'GENIUSMODE DEACTIVATED';
-      name.innerHTML = 'fonte, logo minimalista, bordas redondas, modelos magros segurando alguma coisa, direitos autorais, opcao de idioma';
-      localStorage.setItem('mode', 'cf');
-    } else {
-      modeDiv.innerHTML = 'GENIUSMODE ACTIVATED';
-      name.innerHTML = 'Lui Grosz';
-      localStorage.setItem('mode', 'lgrz');
-    }
-  }
-
-
-</script>
 
 </html>
