@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "scribe.js-ocr": "^0.8.0"
+  }
+}
