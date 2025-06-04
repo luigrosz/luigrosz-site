@@ -1,12 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <title>URL Shortener</title>
+  <meta charset="UTF-8">
+  <title>Encurtador de Links</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 300px;
+      padding: 10px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <h1>Shorten your link</h1>
-  <input type="text" id="url" placeholder="https://example.com">
-  <button onclick="shorten()">Shorten</button>
+  <h1>Encurtador de Links</h1>
+  <input type="text" id="url" placeholder="https://exemplo.com">
+  <button onclick="shorten()">Encurtar</button>
   <p id="result"></p>
 
   <script src="https://cdn.jsdelivr.net/npm/aws-sdk@2.1485.0/dist/aws-sdk.min.js"></script>
@@ -31,27 +86,31 @@
       AWS.config.credentials.get(function(err) {
         if (err) {
           console.error('Erro ao obter credenciais:', err);
-          document.getElementById('result').innerText = 'Erro ao autenticar AWS';
+          document.getElementById('result').innerText = 'Erro ao autenticar com a AWS';
           return;
         }
 
         const docClient = new AWS.DynamoDB.DocumentClient();
 
+        const ttlInSeconds = 60 * 60 * 24 * 2; // 2 days
+        const expiration = Math.floor(Date.now() / 1000) + ttlInSeconds;
+
         const params = {
           TableName: 'Shortener',
           Item: {
             shortenedlink: shortId,
-            originalUrl: url
+            originalUrl: url,
+            expireAt: expiration
           }
         };
 
         docClient.put(params, function(err) {
           if (err) {
             console.error('Erro ao salvar no DynamoDB:', err);
-            document.getElementById('result').innerText = 'Erro ao salvar URL';
+            document.getElementById('result').innerText = 'Erro ao salvar o link';
           } else {
             const shortUrl = 'https://lgrz.xyz/#' + shortId;
-            document.getElementById('result').innerHTML = `<a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
+            document.getElementById('result').innerHTML = `Link encurtado: <br><a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
           }
         });
       });
