@@ -21,8 +21,12 @@
     }
 
     function shorten() {
-      const url = document.getElementById('url').value;
+      let url = document.getElementById('url').value.trim();
       const shortId = generateShortId();
+
+      if (!/^https?:\/\//i.test(url)) {
+        url = 'https://' + url;
+      }
 
       AWS.config.credentials.get(function(err) {
         if (err) {
@@ -36,7 +40,7 @@
         const params = {
           TableName: 'Shortener',
           Item: {
-            shortenedlink: shortId,
+            shortenedLink: shortId,
             originalUrl: url
           }
         };
