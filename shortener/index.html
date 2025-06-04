@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>URL Shortener</title>
+</head>
+<body>
+  <h1>Shorten your link</h1>
+  <input type="text" id="url" placeholder="https://example.com">
+  <button onclick="shorten()">Shorten</button>
+  <p id="result"></p>
+
+  <script src="https://cdn.jsdelivr.net/npm/aws-sdk@2.1485.0/dist/aws-sdk.min.js"></script>
+  <script>
+    AWS.config.region = 'sa-east-1';
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'sa-east-1:cd046010-fbb9-4a9e-a2cb-f984de1ec847'
+    });
+
+    function generateShortId() {
+      return Math.random().toString(36).substring(2, 8);
+    }
+
+    function shorten() {
+      const url = document.getElementById('url').value;
+      const shortId = generateShortId();
+
+      AWS.config.credentials.get(function(err) {
+        if (err) {
+          console.error('Erro ao obter credenciais:', err);
+          document.getElementById('result').innerText = 'Erro ao autenticar AWS';
+          return;
+        }
+
+        const docClient = new AWS.DynamoDB.DocumentClient();
+
+        const params = {
+          TableName: 'Shortener',
+          Item: {
+            shortenedlink: shortId,
+            originalUrl: url
+          }
+        };
+
+        docClient.put(params, function(err) {
+          if (err) {
+            console.error('Erro ao salvar no DynamoDB:', err);
+            document.getElementById('result').innerText = 'Erro ao salvar URL';
+          } else {
+            const shortUrl = 'https://lgrz.xyz/#' + shortId;
+            document.getElementById('result').innerHTML = `<a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>
