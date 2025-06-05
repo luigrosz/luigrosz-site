@@ -74,15 +74,15 @@
     let modeDiv = document.getElementById('mode');
     let name = document.getElementById('name');
     var modeLocalStorage = localStorage.getItem('mode');
-    //window.onload = () => {
-    //  if (modeLocalStorage === 'cf') {
+    window.onload = () => {
+      if (modeLocalStorage === 'cf') {
     //    modeDiv.innerHTML = 'GENIUSMODE DEACTIVATED';
-    //    name.innerHTML = 'Celso Filho';
-    //  } else {
+        name.innerHTML = 'Celso Filho';
+      } else {
     //    modeDiv.innerHTML = 'GENIUSMODE ACTIVATED';
-    //    name.innerHTML = 'Lui Grosz';
-    //  }
-    //};
+        name.innerHTML = 'Lui Grosz';
+      }
+    };
   </script>
 </body>
 
