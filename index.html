@@ -19,12 +19,18 @@
       padding: 0px;
     }
 
+    html, body {
+      overflow: hidden;
+      height: 100vh;
+    }
+
     #root-div {
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
       flex-direction: column;
+      padding: 20px 0;
     }
 
     .nav-links {
@@ -48,6 +54,15 @@
       color: white;
     }
 
+    #minecraft-frame {
+      width: 100%;
+      max-width: 900px;
+      height: 540px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 24px;
+    }
+
     @media only screen and (max-width: 500px) {
       #mode {
         font-size: 19px !important;
@@ -55,6 +70,10 @@
 
       #name {
         font-size: 17px !important;
+      }
+
+      #minecraft-frame {
+        height: 300px;
       }
     }
   </style>
@@ -68,6 +87,8 @@
       <a href="/calculator">Calculadora</a>
       <a href="/shortener">Encurtador</a>
     </div>
+
+    <iframe id="minecraft-frame" src="/EaglercraftX_1.8_u53_Offline_Signed.html" allowfullscreen></iframe>
   </div>
 
   <script>
